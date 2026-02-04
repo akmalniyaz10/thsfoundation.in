@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gallery — The Helping Steps Foundation</title>
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+/* ===== GALLERY PAGE ONLY ===== */
+
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  gap:18px;
+  margin-top:24px;
+}
+
+.gallery-card img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  border-radius:12px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= TOP BAR ================= -->
+<div class="top-bar">
+  <div class="container top-inner">
+    <div>The Helping Steps Foundation | Section 8 — 176526</div>
+    <div>admin@thsfoundation.in | +91 6306466244</div>
+  </div>
+</div>
+
+<!-- ================= HEADER (SAME AS INDEX) ================= -->
+<header class="header">
+  <div class="container header-inner">
+
+    <div class="logo">
+      <img src="images/logo.png" alt="logo">
+      <div>
+        <h2>The Helping Steps Foundation</h2>
+        <small>One Step Towards Smile</small>
+      </div>
+    </div>
+
+    <div class="menu-toggle" id="menuToggle">
+      <i class="fas fa-bars"></i>
+    </div>
+
+    <nav id="mobileNav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="ourteam.html">Our Team</a>
+      <a href="initiative.html" class="active">Initiatives</a>
+      <a href="contact.html">Contact</a>
+      <a href="donate.html" class="donate-btn">Donate</a>
+    </nav>
+
+  </div>
+</header>
+
+<!-- ================= MAIN ================= -->
+<main class="section">
+  <div class="container card">
+
+    <h2>Gallery</h2>
+
+    <!-- GALLERY GRID -->
+    <div id="galleryGrid" class="gallery-grid"></div>
+
+  </div>
+</main>
+
+<!-- ================= FOOTER (SAME AS INDEX) ================= -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <p>admin@thsfoundation.in | www.thsfoundation.in | +91 6306466244</p>
+    <div class="social">
+      <i class="fab fa-facebook"></i>
+      <i class="fab fa-instagram"></i>
+      <i class="fab fa-linkedin"></i>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= JS ================= -->
+<script>
+const menuToggle = document.getElementById("menuToggle");
+const mobileNav = document.getElementById("mobileNav");
+menuToggle.addEventListener("click",()=>mobileNav.classList.toggle("active"));
+</script>
+
+<!-- 🔥 FIREBASE GALLERY LOAD -->
+<script type="module">
+import { getGalleryImages } from "./js/firebase.js";
+
+async function loadGallery(){
+  const wrap = document.getElementById("galleryGrid");
+  const images = await getGalleryImages();
+
+  if(!images || images.length === 0){
+    wrap.innerHTML = "<p class='small-muted'>No images uploaded.</p>";
+    return;
+  }
+
+  wrap.innerHTML = images.map(img => `
+    <div class="card gallery-card">
+      <img src="${img.url}" alt="Gallery Image">
+    </div>
+  `).join("");
+}
+
+loadGallery();
+</script>
+
+</body>
+</html>

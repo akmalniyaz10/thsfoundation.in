@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About — The Helping Steps Foundation</title>
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+/* ===== ABOUT PAGE ONLY ===== */
+.about-justify{ text-align:justify; }
+
+.about-flex{
+  display:flex;
+  gap:40px;
+  align-items:flex-start;
+}
+
+.about-left{ flex:1.3; }
+.about-right{ flex:0.7; }
+
+.ngo-poster-card{
+  width:100%;
+  background:linear-gradient(180deg,#ffffff,#f4f7fb);
+  border-radius:18px;
+  border:1.5px solid #e5e7eb;
+  box-shadow:0 18px 40px rgba(0,0,0,0.12);
+  padding:12px;
+}
+
+.ngo-poster-card img{
+  width:100%;
+  border-radius:14px;
+  object-fit:cover;
+}
+
+/* DOCUMENTS */
+.doc-premium{ width:280px; text-align:center; }
+
+.doc-frame-premium{
+  width:100%;
+  height:380px;
+  border-radius:16px;
+  background:#fff;
+  border:2px solid #e5e7eb;
+  box-shadow:inset 0 0 0 6px #f8fafc,0 14px 30px rgba(0,0,0,0.12);
+  padding:12px;
+}
+
+.doc-frame-premium img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  background:#f9fafb;
+  border-radius:10px;
+  padding:10px;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .about-flex{flex-direction:column;gap:24px;}
+  .ngo-poster-card{max-width:520px;margin:auto;}
+}
+@media(max-width:600px){
+  .about-justify{text-align:left;}
+  .doc-premium{width:100%;max-width:260px;}
+  .doc-frame-premium{height:320px;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= TOP BAR ================= -->
+<div class="top-bar">
+  <div class="container top-inner">
+    <div>The Helping Steps Foundation | Section 8 — 176526</div>
+    <div>admin@thsfoundation.in | +91 6306466244</div>
+  </div>
+</div>
+
+<!-- ================= HEADER (SAME AS INDEX) ================= -->
+<header class="header">
+  <div class="container header-inner">
+
+    <div class="logo">
+      <img src="images/logo.png" alt="logo">
+      <div>
+        <h2>The Helping Steps Foundation</h2>
+        <small>One Step Towards Smile</small>
+      </div>
+    </div>
+
+    <div class="menu-toggle" id="menuToggle">
+      <i class="fas fa-bars"></i>
+    </div>
+
+    <nav id="mobileNav">
+      <a href="index.html">Home</a>
+      <a href="about.html" class="active">About</a>
+      <a href="ourteam.html">Our Team</a>
+      <a href="initiative.html">Initiatives</a>
+      <a href="contact.html">Contact</a>
+      <a href="donate.html" class="donate-btn">Donate</a>
+    </nav>
+
+  </div>
+</header>
+
+<!-- ================= MAIN (INDEX-STYLE SPACING) ================= -->
+<main class="section">
+  <div class="container card">
+
+    <h2>About The Helping Steps Foundation</h2>
+    <p class="small-muted">
+      <strong>Founded:</strong> 2025 • <strong>Licence:</strong> Section 8 — 176526
+    </p>
+
+    <div class="about-flex" style="margin-top:28px;">
+      <div class="about-left">
+        <p class="lead about-justify">
+          The Helping Steps Foundation (THS Foundation) is a community-driven non-profit organisation
+          working across Education, Health, and Social Welfare. Established in 2025 with a vision to
+          create meaningful and measurable social impact.
+        </p>
+
+        <h3>Approach</h3>
+        <ul class="small-muted">
+          <li>Community participation and ownership</li>
+          <li>Evidence-led programme design</li>
+          <li>Transparent reporting and accountability</li>
+        </ul>
+      </div>
+
+      <div class="about-right">
+        <div class="ngo-poster-card">
+          <img src="images/ngo-poster.jpg" alt="NGO Poster">
+        </div>
+      </div>
+    </div>
+
+    <!-- DOCUMENTS -->
+    <div style="margin-top:42px;text-align:center;">
+      <h3>Legal & Registration Documents</h3>
+
+      <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:30px;margin-top:20px;">
+        <div class="doc-premium"><div class="doc-frame-premium"><img src="images/coi.jpg"></div><p>COI</p></div>
+        <div class="doc-premium"><div class="doc-frame-premium"><img src="images/licence.jpg"></div><p>Licence</p></div>
+        <div class="doc-premium"><div class="doc-frame-premium"><img src="images/pan.jpg"></div><p>PAN</p></div>
+        <div class="doc-premium"><div class="doc-frame-premium"><img src="images/12a.jpg"></div><p>12A</p></div>
+        <div class="doc-premium"><div class="doc-frame-premium"><img src="images/80g.jpg"></div><p>80G</p></div>
+        <div class="doc-premium"><div class="doc-frame-premium"><img src="images/tan.jpg"></div><p>TAN</p></div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- ================= FOOTER (SAME AS INDEX) ================= -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <p>admin@thsfoundation.in | www.thsfoundation.in | +91 6306466244</p>
+    <div class="social">
+      <i class="fab fa-facebook"></i>
+      <i class="fab fa-instagram"></i>
+      <i class="fab fa-linkedin"></i>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= JS ================= -->
+<script>
+const menuToggle = document.getElementById("menuToggle");
+const mobileNav = document.getElementById("mobileNav");
+menuToggle.addEventListener("click",()=>mobileNav.classList.toggle("active"));
+</script>
+
+</body>
+</html>

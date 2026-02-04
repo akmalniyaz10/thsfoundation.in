@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Helping Steps Foundation</title>
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<!-- ================= TOP BAR ================= -->
+<div class="top-bar">
+  <div class="container top-inner">
+    <div>The Helping Steps Foundation | Section 8 — 176526</div>
+    <div>admin@thsfoundation.in | +91 6306466244</div>
+  </div>
+</div>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+  <div class="container header-inner">
+
+    <!-- LOGO -->
+    <div class="logo">
+      <img src="images/logo.png" alt="logo">
+      <div>
+        <h2>The Helping Steps Foundation</h2>
+        <small>One Step Towards Smile</small>
+      </div>
+    </div>
+
+    <!-- HAMBURGER -->
+    <div class="menu-toggle" id="menuToggle">
+      <i class="fas fa-bars"></i>
+    </div>
+
+    <!-- NAV -->
+    <nav id="mobileNav">
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About</a>
+      <a href="ourteam.html">Our Team</a>
+      <a href="initiative.html">Initiatives</a>
+      <a href="contact.html">Contact</a>
+      <a href="donate.html" class="donate-btn">Donate</a>
+    </nav>
+
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="slide" style="background-image:url('images/hero.jpg')">
+    <div class="overlay"></div>
+
+    <div class="hero-text" style="text-align:center;left:50%;transform:translate(-50%,-50%);">
+
+      <span>HELP THE PEOPLE IN NEED</span>
+
+      <h1>
+        Your small help<br>
+        make world better
+      </h1>
+
+      <!-- ================= CENTER CTA ================= -->
+      <div style="
+        margin-top:22px;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        gap:14px;
+      ">
+
+        <!-- BIG DONATE -->
+        <a href="donate.html"
+           class="hero-btn"
+           style="min-width:220px;">
+          Donate Now
+        </a>
+
+        <!-- BIG MEMBER -->
+        <a href="membership.html"
+           class="hero-btn"
+           style="background:#2563eb; min-width:220px;">
+          Become a Member
+        </a>
+
+        <!-- SMALL ADMIN -->
+        <a href="admin.html"
+           class="hero-btn"
+           style="
+             background:#111827;
+             font-size:13px;
+             padding:10px 18px;
+             min-width:auto;
+           ">
+          Admin Login
+        </a>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROJECTS ================= -->
+<section class="section">
+  <h2>Featured Projects</h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Education</h3>
+      <p>After-school learning and scholarships.</p>
+    </div>
+
+    <div class="card">
+      <h3>Medical Assistance</h3>
+      <p>Health camps and medical support.</p>
+    </div>
+
+    <div class="card">
+      <h3>Social Welfare</h3>
+      <p>Helping families and livelihoods.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <p>admin@thsfoundation.in | www.thsfoundation.in | +91 6306466244</p>
+    <div class="social">
+      <i class="fab fa-facebook"></i>
+      <i class="fab fa-instagram"></i>
+      <i class="fab fa-linkedin"></i>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= JS ================= -->
+<script>
+const menuToggle = document.getElementById("menuToggle");
+const mobileNav = document.getElementById("mobileNav");
+menuToggle.addEventListener("click",()=>mobileNav.classList.toggle("active"));
+</script>
+
+</body>
+</html>

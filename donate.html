@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Donate — The Helping Steps Foundation</title>
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+/* ===== DONATE PAGE ONLY ===== */
+
+.donate-flex{
+  display:flex;
+  gap:40px;
+  align-items:center;
+  margin-top:28px;
+}
+
+.donate-left{ flex:1.2; }
+.donate-right{ flex:.8; }
+
+.donate-card{
+  background:linear-gradient(180deg,#ffffff 0%, #f4f7fb 100%);
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:26px;
+  padding:32px;
+  box-shadow:0 28px 70px rgba(0,0,0,.18);
+  position:relative;
+}
+
+.bank-box{
+  border:1px solid #e5e7eb;
+  border-radius:16px;
+  padding:22px;
+  background:#fafafa;
+}
+
+.qr-box{
+  text-align:center;
+  margin-top:20px;
+}
+
+.qr-box img{
+  width:180px;
+}
+
+.qr-box span{
+  display:block;
+  margin-top:10px;
+  font-size:14px;
+  color:#6b7280;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .donate-flex{
+    flex-direction:column;
+    text-align:center;
+  }
+  .donate-right{
+    max-width:520px;
+    margin:auto;
+  }
+}
+@media(max-width:600px){
+  .donate-left p{text-align:left;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= TOP BAR ================= -->
+<div class="top-bar">
+  <div class="container top-inner">
+    <div>The Helping Steps Foundation | Section 8 — 176526</div>
+    <div>admin@thsfoundation.in | +91 6306466244</div>
+  </div>
+</div>
+
+<!-- ================= HEADER (SAME AS INDEX) ================= -->
+<header class="header">
+  <div class="container header-inner">
+
+    <div class="logo">
+      <img src="images/logo.png" alt="logo">
+      <div>
+        <h2>The Helping Steps Foundation</h2>
+        <small>One Step Towards Smile</small>
+      </div>
+    </div>
+
+    <div class="menu-toggle" id="menuToggle">
+      <i class="fas fa-bars"></i>
+    </div>
+
+    <nav id="mobileNav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="ourteam.html">Our Team</a>
+      <a href="initiative.html">Initiatives</a>
+      <a href="contact.html">Contact</a>
+      <a href="donate.html" class="donate-btn active">Donate</a>
+    </nav>
+
+  </div>
+</header>
+
+<!-- ================= MAIN ================= -->
+<main class="section">
+  <div class="container card">
+
+    <h2>Donate</h2>
+    <p class="small-muted">
+      Your support helps us deliver education, healthcare and social welfare programmes
+      to underserved communities. Donation receipts are available on request.
+    </p>
+
+    <div class="donate-flex">
+
+      <!-- LEFT -->
+      <div class="donate-left">
+        <h3>Why Donate?</h3>
+        <p class="lead">
+          Your contribution directly supports children, families and communities
+          through education initiatives, health camps and social welfare programmes.
+        </p>
+
+        <ul class="small-muted">
+          <li>Transparent & accountable use of funds</li>
+          <li>Community-driven programmes</li>
+          <li>Verified Section 8 organisation</li>
+        </ul>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="donate-right">
+        <div class="donate-card">
+
+          <h4>Bank / UPI Details</h4>
+
+          <div class="bank-box">
+            <p class="small-muted">
+              <strong>Account Name:</strong> The Helping Steps Foundation<br>
+              <strong>A/C No:</strong> 20533800194<br>
+              <strong>IFSC:</strong> SBIN0008343<br>
+              <strong>Bank:</strong> State Bank of India
+            </p>
+          </div>
+
+          <div class="qr-box">
+            <img src="images/qr.png" alt="QR Code">
+            <span>Scan & Pay using any UPI App</span>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</main>
+
+<!-- ================= FOOTER (SAME AS INDEX) ================= -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <p>admin@thsfoundation.in | www.thsfoundation.in | +91 6306466244</p>
+    <div class="social">
+      <i class="fab fa-facebook"></i>
+      <i class="fab fa-instagram"></i>
+      <i class="fab fa-linkedin"></i>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= JS ================= -->
+<script>
+const menuToggle = document.getElementById("menuToggle");
+const mobileNav = document.getElementById("mobileNav");
+menuToggle.addEventListener("click",()=>mobileNav.classList.toggle("active"));
+</script>
+
+</body>
+</html>

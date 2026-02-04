@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Membership — The Helping Steps Foundation</title>
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+.form-row{display:flex;gap:14px}
+@media(max-width:600px){.form-row{flex-direction:column}}
+</style>
+</head>
+
+<body>
+
+<!-- ================= TOP BAR ================= -->
+<div class="top-bar">
+  <div class="container top-inner">
+    <div>The Helping Steps Foundation | Section 8 — 176526</div>
+    <div>admin@thsfoundation.in | +91 6306466244</div>
+  </div>
+</div>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+  <div class="container header-inner">
+    <div class="logo">
+      <img src="images/logo.png">
+      <div>
+        <h2>The Helping Steps Foundation</h2>
+        <small>One Step Towards Smile</small>
+      </div>
+    </div>
+    <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
+    <nav id="mobileNav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="ourteam.html">Our Team</a>
+      <a href="initiative.html">Initiatives</a>
+      <a href="contact.html">Contact</a>
+      <a href="donate.html" class="donate-btn">Donate</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ================= MAIN ================= -->
+<main class="site-main">
+<section class="container card" style="margin-top:18px">
+
+<h2>Membership Registration</h2>
+<p class="small-muted">All fields mandatory except email. Admin approval required.</p>
+
+<form id="memberForm">
+
+  <div class="form-row">
+    <input id="first" placeholder="First Name" required>
+    <input id="last" placeholder="Last Name" required>
+  </div>
+
+  <div class="form-row">
+    <select id="gender" required>
+      <option value="">Select Gender</option>
+      <option>Male</option>
+      <option>Female</option>
+      <option>Other</option>
+    </select>
+    <input id="mobile" placeholder="Mobile Number" maxlength="10" required>
+  </div>
+
+  <select id="state" required>
+    <option value="">Select State</option>
+    <option>Uttar Pradesh</option>
+    <option>Delhi</option>
+    <option>Maharashtra</option>
+    <option>Bihar</option>
+    <option>Rajasthan</option>
+  </select>
+
+  <input id="email" placeholder="Email (optional)">
+
+  <label>Upload ID Proof</label>
+  <input id="idFile" type="file" accept="image/*,.pdf" required>
+
+  <label>Upload Photo</label>
+  <input id="photoFile" type="file" accept="image/*" required>
+
+  <button id="submitBtn" class="btn" disabled
+    style="opacity:.5;cursor:not-allowed;margin-top:12px">
+    Register Now
+  </button>
+
+</form>
+
+<div id="msg" style="margin-top:12px;font-weight:600"></div>
+
+</section>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <p>admin@thsfoundation.in | www.thsfoundation.in | +91 6306466244</p>
+    <div class="social">
+      <i class="fab fa-facebook"></i>
+      <i class="fab fa-instagram"></i>
+      <i class="fab fa-linkedin"></i>
+    </div>
+  </div>
+</footer>
+
+<script>
+menuToggle.onclick=()=>mobileNav.classList.toggle("active");
+</script>
+
+<!-- 🔥 FIREBASE MEMBERSHIP LOGIC -->
+<script type="module">
+import { uploadFile, addMember } from "./js/firebase.js";
+
+/* DOM */
+const form = document.getElementById("memberForm");
+const btn  = document.getElementById("submitBtn");
+const msg  = document.getElementById("msg");
+
+/* AUTO CAPS + MOBILE VALIDATION */
+[first,last].forEach(i=>{
+  i.addEventListener("input",()=>i.value=i.value.toUpperCase());
+});
+mobile.addEventListener("input",()=>{
+  mobile.value = mobile.value.replace(/[^0-9]/g,"");
+});
+
+/* VALIDATION */
+function validForm(){
+ return (
+  first.value &&
+  last.value &&
+  gender.value &&
+  state.value &&
+  /^[0-9]{10}$/.test(mobile.value) &&
+  idFile.files.length &&
+  photoFile.files.length &&
+  (!email.value || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value))
+ );
+}
+
+function toggleBtn(){
+ btn.disabled = !validForm();
+ btn.style.opacity = btn.disabled ? ".5" : "1";
+ btn.style.cursor  = btn.disabled ? "not-allowed" : "pointer";
+}
+
+form.addEventListener("input",toggleBtn);
+form.addEventListener("change",toggleBtn);
+
+/* SUBMIT */
+form.addEventListener("submit", async(e)=>{
+ e.preventDefault();
+ if(!validForm()) return;
+
+ btn.disabled=true;
+ msg.style.color="blue";
+ msg.textContent="Uploading… please wait";
+
+ try{
+  const photoUrl = await uploadFile(photoFile.files[0],"members/photos");
+  const idUrl    = await uploadFile(idFile.files[0],"members/idproofs");
+
+  await addMember({
+    firstName:first.value,
+    lastName:last.value,
+    gender:gender.value,
+    mobile:mobile.value,
+    email:email.value||"-",
+    state:state.value,
+    photoUrl,
+    idUrl
+  });
+
+  msg.style.color="green";
+  msg.textContent="Registration successful. Pending admin approval.";
+  form.reset();
+  toggleBtn();
+
+ }catch(err){
+  msg.style.color="red";
+  msg.textContent="Error! Please try again.";
+  btn.disabled=false;
+ }
+});
+</script>
+
+</body>
+</html>

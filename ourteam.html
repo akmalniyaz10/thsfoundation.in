@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Our Team — The Helping Steps Foundation</title>
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+/* ===== TEAM PAGE ONLY ===== */
+
+.team-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:26px;
+  margin-top:24px;
+}
+
+.team-card{
+  background:linear-gradient(180deg,#ffffff 0%, #f6f8fb 100%);
+  border:1px solid rgba(0,0,0,0.06);
+  border-radius:18px;
+  padding:22px 18px 26px;
+  text-align:center;
+  box-shadow:0 18px 40px rgba(0,0,0,.10);
+  transition:.4s ease;
+}
+
+.team-card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 28px 65px rgba(0,0,0,.18);
+}
+
+.team-card img{
+  width:120px;
+  height:120px;
+  object-fit:cover;
+  border-radius:50%;
+  margin:10px auto 14px;
+  display:block;
+  border:4px solid #fff;
+  box-shadow:0 8px 20px rgba(0,0,0,.18);
+}
+
+.team-card h4{
+  margin:6px 0 4px;
+  font-weight:600;
+  color:#1f2937;
+}
+
+.team-card p{
+  font-size:13px;
+  letter-spacing:.3px;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .team-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:600px){
+  .team-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= TOP BAR ================= -->
+<div class="top-bar">
+  <div class="container top-inner">
+    <div>The Helping Steps Foundation | Section 8 — 176526</div>
+    <div>admin@thsfoundation.in | +91 6306466244</div>
+  </div>
+</div>
+
+<!-- ================= HEADER (SAME AS INDEX) ================= -->
+<header class="header">
+  <div class="container header-inner">
+
+    <div class="logo">
+      <img src="images/logo.png" alt="logo">
+      <div>
+        <h2>The Helping Steps Foundation</h2>
+        <small>One Step Towards Smile</small>
+      </div>
+    </div>
+
+    <div class="menu-toggle" id="menuToggle">
+      <i class="fas fa-bars"></i>
+    </div>
+
+    <nav id="mobileNav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="ourteam.html" class="active">Our Team</a>
+      <a href="initiative.html">Initiatives</a>
+      <a href="contact.html">Contact</a>
+      <a href="donate.html" class="donate-btn">Donate</a>
+    </nav>
+
+  </div>
+</header>
+
+<!-- ================= MAIN ================= -->
+<main class="section">
+  <div class="container card">
+
+    <h2 style="text-align:center">Our Team</h2>
+
+    <div class="team-grid">
+
+      <div class="team-card">
+        <img src="images/team1.jpg" alt="">
+        <h4>Mohammad Akmal</h4>
+        <p class="small-muted">Founder</p>
+      </div>
+
+      <div class="team-card">
+        <img src="images/team2.jpg" alt="">
+        <h4>Mohammad Ajmal</h4>
+        <p class="small-muted">Co-Founder</p>
+      </div>
+
+      <div class="team-card">
+        <img src="images/team3.jpg" alt="">
+        <h4>Anwarul Islam</h4>
+        <p class="small-muted">Co-Founder</p>
+      </div>
+
+      <div class="team-card">
+        <img src="images/team4.jpg" alt="">
+        <h4>Meem Ajmal</h4>
+        <p class="small-muted">Administrative Coordinator</p>
+      </div>
+
+      <div class="team-card">
+        <img src="images/team5.jpg" alt="">
+        <h4>Aftab Alam</h4>
+        <p class="small-muted">Public Relations Officer</p>
+      </div>
+
+      <div class="team-card">
+        <img src="images/team6.jpg" alt="">
+        <h4>Md Nasir</h4>
+        <p class="small-muted">Digital Operations Executive</p>
+      </div>
+
+    </div>
+
+  </div>
+</main>
+
+<!-- ================= FOOTER (SAME AS INDEX) ================= -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <p>admin@thsfoundation.in | www.thsfoundation.in | +91 6306466244</p>
+    <div class="social">
+      <i class="fab fa-facebook"></i>
+      <i class="fab fa-instagram"></i>
+      <i class="fab fa-linkedin"></i>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= JS ================= -->
+<script>
+const menuToggle = document.getElementById("menuToggle");
+const mobileNav = document.getElementById("mobileNav");
+menuToggle.addEventListener("click",()=>mobileNav.classList.toggle("active"));
+</script>
+
+</body>
+</html>

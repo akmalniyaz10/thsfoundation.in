@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin — The Helping Steps Foundation</title>
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+/* ===== ADMIN ONLY ===== */
+.login-wrap{min-height:60vh;display:flex;align-items:center;justify-content:center}
+.login-card{width:360px;background:#fff;border-radius:16px;padding:28px;box-shadow:0 18px 40px rgba(0,0,0,.12)}
+.login-card input{width:100%;padding:12px 14px;border-radius:10px;border:1px solid #d1d5db;margin-bottom:12px}
+.login-card button{width:100%;padding:12px;border-radius:10px;border:none;background:#2563eb;color:#fff;font-weight:600}
+
+.admin-tabs{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+.admin-tab{padding:10px 16px;border-radius:10px;background:#e5e7eb;cursor:pointer;font-weight:600}
+.admin-tab.active{background:#2563eb;color:#fff}
+
+.panel{display:none;margin-top:20px}
+.panel.active{display:block}
+
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden}
+th,td{padding:12px;border-bottom:1px solid #e5e7eb;font-size:14px}
+th{background:#f9fafb}
+
+.photo-box{width:60px;height:60px;border-radius:8px;overflow:hidden;border:1px solid #ddd}
+.photo-box img{width:100%;height:100%;object-fit:cover}
+
+.btn{padding:6px 10px;border-radius:6px;border:none;cursor:pointer}
+.btn-add{background:#16a34a;color:#fff}
+.btn-del{background:#dc2626;color:#fff}
+</style>
+</head>
+
+<body>
+
+<!-- ================= TOP BAR (INDEX SAME) ================= -->
+<div class="top-bar">
+  <div class="container top-inner">
+    <div>The Helping Steps Foundation | Section 8 — 176526</div>
+    <div>admin@thsfoundation.in | +91 6306466244</div>
+  </div>
+</div>
+
+<!-- ================= HEADER (INDEX SAME) ================= -->
+<header class="header">
+  <div class="container header-inner">
+
+    <div class="logo">
+      <img src="images/logo.png">
+      <div>
+        <h2>The Helping Steps Foundation</h2>
+        <small>One Step Towards Smile</small>
+      </div>
+    </div>
+
+    <div class="menu-toggle" id="menuToggle">
+      <i class="fas fa-bars"></i>
+    </div>
+
+    <nav id="mobileNav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="ourteam.html">Our Team</a>
+      <a href="initiative.html">Initiatives</a>
+      <a href="contact.html">Contact</a>
+      <a href="donate.html" class="donate-btn">Donate</a>
+    </nav>
+
+  </div>
+</header>
+
+<!-- ================= MAIN ================= -->
+<main class="site-main">
+<section class="container card" style="margin-top:18px">
+
+<!-- LOGIN -->
+<div id="loginBox" class="login-wrap">
+  <div class="login-card">
+    <h3>Admin Login</h3>
+    <input id="adminId" placeholder="Admin ID">
+    <input id="adminPass" type="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard" style="display:none">
+
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+    <h2>Admin Panel</h2>
+    <button class="btn btn-del" onclick="logout()">Logout</button>
+  </div>
+
+  <div class="admin-tabs">
+    <div class="admin-tab active" onclick="openTab('members')">Members</div>
+    <div class="admin-tab" onclick="openTab('events')">Events</div>
+    <div class="admin-tab" onclick="openTab('gallery')">Gallery</div>
+  </div>
+
+  <!-- MEMBERS -->
+  <div id="members" class="panel active">
+    <h3>Pending Members</h3>
+    <table id="memberTable"></table>
+  </div>
+
+  <!-- EVENTS -->
+  <div id="events" class="panel">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <h3>Events</h3>
+      <button class="btn btn-add" onclick="addNewEvent()">Add Event</button>
+    </div>
+    <table id="eventTable" style="margin-top:12px"></table>
+  </div>
+
+  <!-- GALLERY -->
+  <div id="gallery" class="panel">
+    <h3>Gallery</h3>
+    <input type="file" id="galleryFile">
+    <button class="btn btn-add" onclick="uploadGallery()">Upload</button>
+    <div id="galleryList"
+      style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px">
+    </div>
+  </div>
+
+</div>
+
+</section>
+</main>
+
+<!-- ================= FOOTER (INDEX SAME) ================= -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <p>admin@thsfoundation.in | www.thsfoundation.in | +91 6306466244</p>
+    <div class="social">
+      <i class="fab fa-facebook"></i>
+      <i class="fab fa-instagram"></i>
+      <i class="fab fa-linkedin"></i>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= JS ================= -->
+<script>
+menuToggle.onclick=()=>mobileNav.classList.toggle("active");
+</script>
+
+<!-- 🔥 FIREBASE ADMIN LOGIC -->
+<script type="module">
+import {
+  getMembers, approveMember, deleteMember,
+  addEvent, getEvents, deleteEvent,
+  uploadFile, addGalleryImage, getGalleryImages, deleteGalleryImage
+} from "./js/firebase.js";
+
+const ADMIN_ID="THS-ADMIN";
+const ADMIN_PASS="12345";
+
+window.login=()=>{
+  if(adminId.value===ADMIN_ID && adminPass.value===ADMIN_PASS){
+    loginBox.style.display="none";
+    dashboard.style.display="block";
+    loadMembers(); loadEvents(); loadGallery();
+  } else alert("Invalid login");
+}
+window.logout=()=>location.reload();
+
+window.openTab=id=>{
+ document.querySelectorAll(".admin-tab").forEach(t=>t.classList.remove("active"));
+ event.target.classList.add("active");
+ document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
+}
+
+/* MEMBERS */
+async function loadMembers(){
+ const m=await getMembers("pending");
+ memberTable.innerHTML=`<tr><th>Name</th><th>Mobile</th><th>Photo</th><th>Action</th></tr>`+
+ m.map(x=>`
+ <tr>
+  <td>${x.firstName} ${x.lastName}</td>
+  <td>${x.mobile}</td>
+  <td><div class="photo-box"><img src="${x.photoURL}"></div></td>
+  <td>
+    <button class="btn btn-add" onclick="approve('${x.id}')">Approve</button>
+    <button class="btn btn-del" onclick="removeM('${x.id}')">Delete</button>
+  </td>
+ </tr>`).join("");
+}
+window.approve=async id=>{await approveMember(id);loadMembers();}
+window.removeM=async id=>{if(confirm("Delete?")){await deleteMember(id);loadMembers();}}
+
+/* EVENTS */
+async function loadEvents(){
+ const e=await getEvents();
+ eventTable.innerHTML=`<tr><th>Title</th><th>Date</th><th>Action</th></tr>`+
+ e.map(x=>`
+ <tr>
+  <td>${x.title}</td>
+  <td>${x.date}</td>
+  <td><button class="btn btn-del" onclick="removeE('${x.id}')">Delete</button></td>
+ </tr>`).join("");
+}
+window.addNewEvent=async()=>{
+ const t=prompt("Title"); const d=prompt("Date"); const desc=prompt("Description");
+ if(t&&d){await addEvent({title:t,date:d,desc});loadEvents();}
+}
+window.removeE=async id=>{if(confirm("Delete?")){await deleteEvent(id);loadEvents();}}
+
+/* GALLERY */
+async function loadGallery(){
+ const g=await getGalleryImages();
+ galleryList.innerHTML=g.map(i=>`
+ <div>
+  <img src="${i.url}" style="width:100%;border-radius:8px">
+  <button class="btn btn-del" onclick="removeG('${i.id}')">Delete</button>
+ </div>`).join("");
+}
+window.uploadGallery=async()=>{
+ const f=galleryFile.files[0]; if(!f) return;
+ const url=await uploadFile(f,"gallery");
+ await addGalleryImage(url); loadGallery();
+}
+window.removeG=async id=>{await deleteGalleryImage(id);loadGallery();}
+</script>
+
+</body>
+</html>
